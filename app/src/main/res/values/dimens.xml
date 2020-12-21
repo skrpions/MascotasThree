@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Dp activity_main -->
+    <dimen name="espacio_cardview">5dp</dimen>
+    <dimen name="margin">16dp</dimen>
+    <dimen name="marginTop_Button">10dp</dimen>
+    <dimen name="corner_radius">10dp</dimen>
+    <dimen name="marginLeft">5dp</dimen>
+    <dimen name="Left_Right">40dp</dimen>
+
+    <!-- Sp activity_main -->
+    <dimen name="nombre_contacto">25sp</dimen>
+    <dimen name="telefono_contacto">20sp</dimen>
+    <dimen name="correo_contacto">15sp</dimen>
+    <dimen name="titulo">20sp</dimen>
+    <dimen name="tamanoNormal">12sp</dimen>
+    <dimen name="text_size">18sp</dimen>
+
+    <!-- Dp cardview_mascota.xml -->
+    <dimen name="marginTop_Datos">5dp</dimen>
+    <dimen name="WidthEight_Foto">100dp</dimen>
+    <dimen name="marginTopButton_Foto">10dp</dimen>
+
+    <!-- Sp cardview_mascota.xml -->
+    <dimen name="size_tvNombre">18sp</dimen>
+    <dimen name="size_tvDatos">15sp</dimen>
+
+    <!-- Dp actionbar.xml -->
+    <dimen name="elevacion_actionbar">4dp</dimen>
+    <dimen name="alto_ancho_star">30dp</dimen>
+    <dimen name="margin_right_star">10dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+
+
+</resources>

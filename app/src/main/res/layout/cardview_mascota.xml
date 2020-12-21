@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardview_contacto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/espacio_cardview"
+    app:cardElevation="@dimen/marginTop_Button"
+    app:cardCornerRadius="@dimen/corner_radius"
+    android:layout_margin="@dimen/margin">
+
+        <LinearLayout
+            android:id="@+id/lltargeta"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="@color/purple_500">
+
+            <!-- =========== Start :: Foto ============ -->
+            <ImageView
+                android:id="@+id/ivFotoCv"
+                android:layout_width="@dimen/WidthEight_Foto"
+                android:layout_height="@dimen/WidthEight_Foto"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/marginTopButton_Foto"
+                android:layout_marginBottom="@dimen/marginTopButton_Foto"
+               />
+            <!-- =========== End :: Foto ============ -->
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <!-- =========== Start :: Hueso White ============ -->
+                    <ImageButton
+                        android:id="@+id/btnHuesoWhite"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/hueso_white_48"
+                        android:layout_marginLeft="10dp"
+                        android:layout_alignParentLeft="true"/>
+                    <!-- =========== End :: Hueso White ============ -->
+
+
+                    <!-- =========== Start :: Nombre ============ -->
+                    <TextView
+                        android:id="@+id/tvNombreCv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Catty"
+                        android:textStyle="normal"
+                        android:textSize="@dimen/size_tvNombre"
+                        android:layout_toRightOf="@id/btnHuesoWhite"
+                        android:layout_centerVertical="true"/>
+                    <!-- =========== End :: Nombre ============ -->
+
+
+                    <!-- =========== Start :: Contador ============ -->
+                    <TextView
+                        android:id="@+id/tvContadorCv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="normal"
+                        android:textSize="@dimen/size_tvNombre"
+                        android:layout_toLeftOf="@id/btnHuesoYellow"
+                        android:layout_centerVertical="true"/>
+                    <!-- =========== End :: Contador ============ -->
+
+
+                    <!-- =========== Start :: Hueso Yellow ============ -->
+                    <ImageButton
+                        android:id="@+id/btnHuesoYellow"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:src="@drawable/hueso_yellow_48"
+                        android:layout_marginRight="10dp"
+                        android:layout_alignParentRight="true"/>
+                    <!-- =========== Start :: Hueso Yellow ============ -->
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+</androidx.cardview.widget.CardView>
