@@ -6,15 +6,17 @@
     android:layout_height="?attr/actionBarSize"
     android:background="@color/primary"
     android:elevation="@dimen/elevacion_actionbar"
-    app:titleTextColor="@color/white">
+    app:titleTextColor="@color/white"
+    android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+    app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <ImageView
-            android:layout_width="14dp"
-            android:layout_height="match_parent"
+            android:layout_width="@dimen/alto_ancho_pet"
+            android:layout_height="@dimen/alto_ancho_pet"
             android:layout_alignParentLeft="true"
             android:src="@drawable/mano_pet_white" />
 

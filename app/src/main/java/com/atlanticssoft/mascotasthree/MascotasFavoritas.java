@@ -1,16 +1,14 @@
 package com.atlanticssoft.mascotasthree;
 
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
-import android.view.View;
+import android.view.Menu;
 import android.widget.ImageView;
 
 import com.atlanticssoft.mascotasthree.Adapters.MascotaAdaptador;
@@ -18,29 +16,26 @@ import com.atlanticssoft.mascotasthree.Models.Mascota;
 
 import java.util.ArrayList;
 
-public class Favoritos extends AppCompatActivity {
+public class MascotasFavoritas extends AppCompatActivity {
 
     RecyclerView recyclerv_mascotasfavoritas;
     ArrayList<Mascota> mascotas;
 
     ImageView ivStar_favoritos;
 
-
-    @SuppressLint("ResourceType")
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_favoritos);
+        setContentView(R.layout.activity_mascotas_favoritas);
 
         // Habilito mi actionbar_favoritos personalizado
         Toolbar miAcionBar_Favoritos = (Toolbar) findViewById(R.id.miActionBar_Favoritos);
         setSupportActionBar(miAcionBar_Favoritos);
 
         // Habilito la navegación hacia atrás
-        getSupportActionBar().setHomeButtonEnabled(true);
+        //getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-  
+
         // Enlazo el recyclerview grafico con la lógica
         recyclerv_mascotasfavoritas = (RecyclerView) findViewById(R.id.recyclerv_mascotasfavoritas);
 
@@ -51,7 +46,6 @@ public class Favoritos extends AppCompatActivity {
         recyclerv_mascotasfavoritas.setLayoutManager(linearLayoutManager);
         inicializarListaMascotas();
         inicializarAdaptador();
-
     }
 
     public void inicializarListaMascotas(){
@@ -70,19 +64,23 @@ public class Favoritos extends AppCompatActivity {
         recyclerv_mascotasfavoritas.setAdapter(adaptador);
     }
 
-    @Override public boolean onSupportNavigateUp() {
-        onBackPressed();
-        return true; }
-
-    //
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
 
         if(keyCode == KeyEvent.KEYCODE_BACK)
         {
-            Intent intent = new Intent(Favoritos.this, MainActivity.class);
+            Intent intent = new Intent(MascotasFavoritas.this, MainActivity.class);
             startActivity(intent);
         }
         return super.onKeyDown(keyCode, event);
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        getMenuInflater().inflate(R.menu.menu_activity_2, menu);
+        return true;
+
+    }
+
 }

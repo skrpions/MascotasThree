@@ -15,8 +15,8 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
+            android:layout_width="@dimen/alto_ancho_pet"
+            android:layout_height="@dimen/alto_ancho_pet"
             android:src="@drawable/mano_pet_white"
             android:layout_alignParentLeft="true"/>
 

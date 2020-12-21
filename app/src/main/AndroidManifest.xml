@@ -9,14 +9,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MascotasThree">
-        <!-- android:parentActivityName=".MainActivity"> se usa para que funcione la navegación hacia atrás -->
-        <activity
-            android:name=".Favoritos"
-            android:parentActivityName=".Favoritos"></activity> <!-- Soporte para la versión 4.0 y anteriores -->
-        <meta-data
-            android:name="android.support.PARENT_ACTIVITY"
-            android:value=".MainActivity" />
 
+        <!-- android:parentActivityName=".MainActivity"> se usa para que funcione la navegación hacia atrás-->
+        <activity android:name=".MascotasFavoritas"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

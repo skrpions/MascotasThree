@@ -59,9 +59,8 @@ public class MainActivity extends AppCompatActivity {
         ivStar_favoritos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, Favoritos.class);
+                Intent intent = new Intent(MainActivity.this, MascotasFavoritas.class);
                 startActivity(intent);
-                finish();
             }
         });
 
