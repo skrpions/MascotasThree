@@ -1,5 +1,6 @@
 package com.atlanticssoft.mascotasthree;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -7,9 +8,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.ContextMenu;
 import android.view.KeyEvent;
 import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.atlanticssoft.mascotasthree.Adapters.MascotaAdaptador;
 import com.atlanticssoft.mascotasthree.Models.Mascota;
@@ -22,6 +29,7 @@ public class MascotasFavoritas extends AppCompatActivity {
     ArrayList<Mascota> mascotas;
 
     ImageView ivStar_favoritos;
+    TextView tvPresioname;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +43,11 @@ public class MascotasFavoritas extends AppCompatActivity {
         // Habilito la navegación hacia atrás
         //getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
+        // Activo el menu de contexto
+        tvPresioname = (TextView) findViewById(R.id.tvPresioname);
+        registerForContextMenu(tvPresioname);
 
         // Enlazo el recyclerview grafico con la lógica
         recyclerv_mascotasfavoritas = (RecyclerView) findViewById(R.id.recyclerv_mascotasfavoritas);
@@ -75,12 +88,93 @@ public class MascotasFavoritas extends AppCompatActivity {
         return super.onKeyDown(keyCode, event);
     }
 
+    // Muestro el menú de opciones en el activity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
-        getMenuInflater().inflate(R.menu.menu_activity_2, menu);
+        getMenuInflater().inflate(R.menu.menu_opciones, menu);
         return true;
-
     }
 
+    // Controlar las opciones del menú de opciones
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        switch (item.getItemId()){
+            case R.id.mnAcerca:
+                Intent intentAcerca = new Intent(MascotasFavoritas.this, Acerca.class);
+                startActivity(intentAcerca);
+                break;
+
+            case R.id.mnConfiguraciones:
+                Intent intentConfiguraciones = new Intent(MascotasFavoritas.this, Configuraciones.class);
+                startActivity(intentConfiguraciones);
+                break;
+
+            case R.id.mnSalir:
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    // Muestro el menú de contexto en el activity cuando se mantenga presionado el view
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+
+        getMenuInflater().inflate(R.menu.menu_contexto, menu);
+    }
+
+    // Controlaré las opciones del menú de contexto que seleccione
+    @Override
+    public boolean onContextItemSelected(@NonNull MenuItem item) {
+
+        switch (item.getItemId()){
+            case R.id.mnEditar:
+                Intent intentAcerca = new Intent(MascotasFavoritas.this, Acerca.class);
+                startActivity(intentAcerca);
+                break;
+
+            case R.id.mnEliminar:
+                Intent intentConfiguraciones = new Intent(MascotasFavoritas.this, Configuraciones.class);
+                startActivity(intentConfiguraciones);
+                break;
+
+        }
+        return super.onContextItemSelected(item);
+    }
+
+    // Codigo para mostrar el menu de un Popup
+    public void levantarMenuPopup(View v){
+        ImageView imageView = (ImageView) findViewById(R.id.btnClickeame);
+        PopupMenu popupMenu = new PopupMenu(this, imageView);
+        popupMenu.getMenuInflater().inflate(R.menu.menu_popup, popupMenu.getMenu());
+
+        // Controlaré las opciones del Popup
+        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+
+                switch (item.getItemId()){
+                    case R.id.mnView:
+                        Toast.makeText(getBaseContext(),getResources().getString(R.string.mnView_Titulo),Toast.LENGTH_SHORT).show();
+                        //Intent intentAcerca = new Intent(MascotasFavoritas.this, Acerca.class);
+                        //startActivity(intentAcerca);
+                        break;
+
+                    case R.id.mnViewDetail:
+                        Toast.makeText(getBaseContext(),getResources().getString(R.string.mn_Detalles),Toast.LENGTH_SHORT).show();
+                        //Intent intentConfiguraciones = new Intent(MascotasFavoritas.this, Configuraciones.class);
+                        //startActivity(intentConfiguraciones);
+                        break;
+
+                }
+
+                return true;
+            }
+        });
+
+        popupMenu.show();
+    }
 }

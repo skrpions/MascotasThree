@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/mnAcerca"
+        android:title="@string/text_menu_about"
+        android:orderInCategory="101"/>
+
+    <item
+        android:id="@+id/mnConfiguraciones"
+        android:title="@string/m_configuraciones"
+        android:orderInCategory="102"/>
+
+    <item
+        android:id="@+id/mnSalir"
+        android:title="@string/m_salir"
+        android:orderInCategory="103"/>
+
+</menu>

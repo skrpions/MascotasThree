@@ -63,7 +63,7 @@ public class MascotaAdaptador extends RecyclerView.Adapter<MascotaAdaptador.Masc
 
 
             private void raitearMascota() {
-                // Convierto a entero en numero del contador u lo asigno a la variable numero
+                // Convierto a entero en numero del contador y lo asigno a la variable numero
                 int numero = Integer.parseInt(holder.tvContadorCv.getText().toString());
 
                 // Sumo 1 por cada vez que se presione el hueso blanco
@@ -93,10 +93,11 @@ public class MascotaAdaptador extends RecyclerView.Adapter<MascotaAdaptador.Masc
             super(itemView);
 
             // Enlazo la parte de grafica con la parte logica
-            ivFotoCv = (ImageView) itemView.findViewById(R.id.ivFotoCv);
-            tvNombreCv = (TextView) itemView.findViewById(R.id.tvNombreCv);
-            tvContadorCv = (TextView) itemView.findViewById(R.id.tvContadorCv);
+            ivFotoCv      = (ImageView) itemView.findViewById(R.id.ivFotoCv);
+            tvNombreCv    = (TextView) itemView.findViewById(R.id.tvNombreCv);
+            tvContadorCv  = (TextView) itemView.findViewById(R.id.tvContadorCv);
             btnHuesoWhite = (ImageButton) itemView.findViewById(R.id.btnHuesoWhite);
+
 
         }
     }

@@ -12,4 +12,11 @@
 
     <string name="text_menu_about">Acerca</string>
     <string name="text_menu_fav">Fav</string>
+    <string name="m_configuraciones">Configuraciones</string>
+    <string name="m_salir">Salir</string>
+
+    <string name="mn_editar">Editar</string>
+    <string name="mn_eliminar">Eliminar</string>
+    <string name="mnView_Titulo">Titulo Imagen</string>
+    <string name="mn_Detalles">Detalles Imagen</string>
 </resources>
