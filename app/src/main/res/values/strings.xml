@@ -10,7 +10,7 @@
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 
-    <string name="text_menu_about">Acerca</string>
+    <string name="m_acercade">Acerca de</string>
     <string name="text_menu_fav">Fav</string>
     <string name="m_configuraciones">Configuraciones</string>
     <string name="m_salir">Salir</string>
@@ -19,4 +19,38 @@
     <string name="mn_eliminar">Eliminar</string>
     <string name="mnView_Titulo">Titulo Imagen</string>
     <string name="mn_Detalles">Detalles Imagen</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="m_contacto">Contacto</string>
+
+    <!-- Start :: FormularioContacto -->
+    <string name="etNombre">Nombre:</string>
+    <string name="etEmail">E-mail:</string>
+    <string name="etMensaje">Mensaje:</string>
+
+    <string name="btnEnviar">Enviar Comentario</string>
+
+    <string name="registroExitoso1">Bienvenido</string>
+    <string name="registroExitoso2">, Ahora Estas Registrado</string>
+    <string name="registroErrado">Opps, Las claves no Coinciden</string>
+    <!-- End :: FormularioContacto -->
+
+    <!-- Start :: Acerca -->
+
+    <string name="tvNombre">NESTOR MARTINEZ C</string>
+    <string name="tvNacimiento">16/04/1995</string>
+    <string name="tvEmail">sksmartinez@gmail.com</string>
+    <string name="tvBiografia">Mi nombre es NESTOR MARTINEZ, tengo 25 años, nací en la ciudad blanca de Colombia.
+        Dentro de mi núcleo familiar esta mi Padre Arnobio Martínez quien es docente de planta desde hace más de 20 años  en el Tambo Cauca,
+        Mi mamá es Carmen Cobo, ama de casa y la mujer más importante en mi vida,
+        también está mi hermano mayor: Felipe con 30 años de edad
+        y me hermana menor: Karen con 20 años.
+        En época de vacaciones viajamos a las fincas de mis abuelos para disfrutar de los ríos, los animales, el campo, reuniones con los buenos amigos, primos y demás familiares que también aprovechan,
+        es así como  pasamos esas temporadas.
+
+        Soy estudiante de la carrera: Ingeniería de Sistemas Informáticos en la Corporación Universitaria Autónoma del Cauca
+        dado que ha sido mi pasión el mundo virtual desde hace varios años, básicamente todo aquello que esté involucrado con la tecnología es de mi interés.
+
+    </string>
+    <string name="Ronny">RONNY</string>
 </resources>

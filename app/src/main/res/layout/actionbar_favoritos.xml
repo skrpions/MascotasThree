@@ -6,9 +6,9 @@
     android:layout_height="?attr/actionBarSize"
     android:background="@color/primary"
     android:elevation="@dimen/elevacion_actionbar"
-    app:titleTextColor="@color/white"
-    android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-    app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+    android:theme="@style/MyToolbarTheme"
+    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+    app:titleTextColor="@color/white">
 
     <RelativeLayout
         android:layout_width="match_parent"

@@ -1,14 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Acerca">
 
-    <TextView
+    <include android:id="@+id/miActionBar_Favoritos"
+        layout="@layout/actionbar_favoritos"/>
+
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Acerca de"/>
+        android:layout_marginTop="58dp">
 
-</LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_margin="@dimen/margen_general">
+
+            <ImageView
+                android:id="@+id/ivAvatar"
+                android:layout_width="@dimen/WidthEight_Foto"
+                android:layout_height="@dimen/WidthEight_Foto"
+                android:src="@drawable/logo"
+                android:layout_gravity="center"
+                android:layout_marginBottom="@dimen/marginTopButton_Foto"/>
+
+            <!-- =========== Start :: Nombre ============ -->
+            <TextView
+                android:id="@+id/tvNombre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tvNombre"
+                android:textStyle="bold"
+                android:textSize="@dimen/size_tvNombre"
+                android:textColor="@color/black"
+                android:layout_gravity="center_horizontal"/>
+            <!-- =========== End :: Nombre  ============ -->
+
+
+            <!-- =========== Start :: Fecha Nacimiento ============ -->
+            <TextView
+                android:id="@+id/tvNacimiento"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tvNacimiento"
+                android:textStyle="normal"
+                android:textSize="@dimen/size_tvDatos"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/marginTop_Datos"/>
+            <!-- =========== End :: Fecha Nacimiento ============ -->
+
+
+            <!-- =========== Start E-mail ============ -->
+            <TextView
+                android:id="@+id/tvEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tvEmail"
+                android:textStyle="normal"
+                android:textSize="@dimen/size_tvDatos"
+                android:layout_gravity="center_horizontal"/>
+
+            <!-- =========== End E-mail ============ -->
+
+
+            <!-- =========== Start :: Biografia ============ -->
+            <TextView
+                android:id="@+id/tvBiografia"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:text="@string/tvBiografia"
+                android:textAlignment="center"
+                android:textStyle="normal"
+                android:textSize="@dimen/size_tvDatos"
+                android:layout_gravity="center|center_horizontal"
+                android:layout_marginTop="@dimen/margin"/>
+
+            <!-- =========== End :: Biografia ============ -->
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

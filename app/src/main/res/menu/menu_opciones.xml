@@ -1,20 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+
+    <item
+        android:id="@+id/mnContacto"
+        android:title="@string/m_contacto"
+        android:orderInCategory="102"
+        app:showAsAction="never"/>
 
     <item
         android:id="@+id/mnAcerca"
-        android:title="@string/text_menu_about"
-        android:orderInCategory="101"/>
+        android:title="@string/m_acercade"
+        android:orderInCategory="103"
+        app:showAsAction="never"/>
 
+
+    <!--
     <item
         android:id="@+id/mnConfiguraciones"
         android:title="@string/m_configuraciones"
-        android:orderInCategory="102"/>
+        android:orderInCategory="101"/>
 
     <item
         android:id="@+id/mnSalir"
         android:title="@string/m_salir"
-        android:orderInCategory="103"/>
+        android:orderInCategory="103"/> -->
 
 </menu>

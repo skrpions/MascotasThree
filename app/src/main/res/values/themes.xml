@@ -14,10 +14,17 @@
         <!-- Customize your theme here. -->
     </style>
 
-    <style name="Theme.MascotasThree.NoActionBar">
+    <style name="Theme.MascotasThree.NoActionBar" >
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
+
+    <style name="MyToolbarTheme">
+        <!-- Se utiliza para teñir la flecha hacia atrás, el menú y la flecha giratoria. -->
+        <item name="colorControlNormal">@color/white</item>
+    </style>
+
+    <style name="Theme.MyApp.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 
 </resources>

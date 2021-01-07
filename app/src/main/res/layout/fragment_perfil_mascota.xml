@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+android:layout_width="match_parent"
+android:layout_height="match_parent">
+
+    <!-- =========== Start :: Avaar Mascota ============ -->
+    <com.mikhaellopez.circularimageview.CircularImageView
+        android:id="@+id/avatarRonny"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/ronny"
+        app:civ_border_color="#005a72"
+        app:civ_border_width="4dp"
+        app:civ_shadow="true"
+        app:civ_shadow_radius="10dp"
+        app:civ_shadow_color="#013f4f"
+        android:layout_centerHorizontal="true"/>
+    <!-- =========== End :: Avaar Mascota ============ -->
+
+
+    <!-- =========== Start :: Nombre ============ -->
+    <TextView
+        android:id="@+id/tvNombreMascota"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Ronny"
+        android:textStyle="bold"
+        android:textSize="@dimen/size_tvNombre"
+        android:textColor="@color/black"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/avatarRonny"/>
+    <!-- =========== End :: Nombre  ============ -->
+
+
+    <!-- =========== Start :: Linea Separadora ============ -->
+    <LinearLayout
+        android:id="@+id/linea_separadora"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/divider"
+        android:orientation="horizontal"
+        android:layout_below="@id/tvNombreMascota"/>
+    <!-- =========== End :: Linea Separadora ============ -->
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerv_perfilmascota"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/margen_general"
+        android:layout_marginRight="@dimen/margen_general"
+        android:layout_marginBottom="60dp"
+        android:layout_below="@id/linea_separadora"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margen_general"
+        android:layout_marginRight="@dimen/margen_general"
+        android:layout_marginBottom="@dimen/marginbutton_floating"
+        app:elevation="6dp"
+        app:pressedTranslationZ="12dp"
+        app:borderWidth="0dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        app:srcCompat="@drawable/camera_white"
+        />
+
+</RelativeLayout>

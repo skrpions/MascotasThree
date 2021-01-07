@@ -1,33 +1,34 @@
 package com.atlanticssoft.mascotasthree;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.TextView;
 
-import com.atlanticssoft.mascotasthree.Adapters.MascotaAdaptador;
-import com.atlanticssoft.mascotasthree.Models.Mascota;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
+import com.atlanticssoft.mascotasthree.Adapters.PageAdaptador;
+import com.atlanticssoft.mascotasthree.Fragments.PerfilMascotaFragment;
+import com.atlanticssoft.mascotasthree.Fragments.RecyclerViewFragment;
+import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
 
-    RecyclerView recyclerv_mascotas;
-    ArrayList<Mascota> mascotas;
-
     ImageView ivStar_favoritos;
+
+    // View's necesarios para usar Fragments
+    Toolbar miActionBar;
+    TabLayout tabLayout;
+    ViewPager viewPager;
 
 
     @Override
@@ -35,24 +36,20 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Habilito mi actionbar personalizado
-        Toolbar miAcionBar = (Toolbar) findViewById(R.id.miAcionBar);
-        setSupportActionBar(miAcionBar);
-
-        FloatingActionButton myfab = findViewById(R.id.fab);
-        myfab.setColorFilter(Color.WHITE);
+        // Habilito mi actionbar personalizado Recuerda Adicionar la propiedad android:parentActivityName=".MainActivity" en el Manifest para que funcione
+        miActionBar = (Toolbar) findViewById(R.id.miActionBar);
+        setSupportActionBar(miActionBar);
 
 
-        // Enlazo el recyclerview grafico con la lógica
-        recyclerv_mascotas = (RecyclerView) findViewById(R.id.recyclerv_mascotas);
+        if (miActionBar != null){
+            setSupportActionBar(miActionBar);
+        }
 
-        // Ahora el codigo será en terminos de recycler view
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this); // Organizo todas las tarjetas una seguida de otra
-        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL); // Orientación en la que mostraré mi lista
+        //toolbar = (Toolbar) findViewById(R.id.toolbar);
+        tabLayout = (TabLayout) findViewById(R.id.tabLayout);
+        viewPager = (ViewPager) findViewById(R.id.viewPager);
 
-        recyclerv_mascotas.setLayoutManager(linearLayoutManager);
-        inicializarListaMascotas();
-        inicializarAdaptador();
+        setUpViewPager();
 
 
         ivStar_favoritos = (ImageView) findViewById(R.id.ivStar_favoritos);
@@ -66,22 +63,51 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void inicializarListaMascotas(){
-        mascotas = new ArrayList<Mascota>();
+    // Agrego los fragments a la lista
+    private ArrayList<Fragment> agregarFragments(){
+        ArrayList<Fragment> fragments = new ArrayList<>();
 
-        mascotas.add(new Mascota(R.drawable.icons8_cat_96 ,"Catty",5));
-        mascotas.add(new Mascota(R.drawable.icons8_dog_96, "Ronny",4));
-        mascotas.add(new Mascota(R.drawable.misifu ,"Misifú",3));
-        mascotas.add(new Mascota(R.drawable.bruno ,"Bruno Morrongueras",2));
-        mascotas.add(new Mascota(R.drawable.gallina ,"Gallinila Kirika",2));
-        mascotas.add(new Mascota(R.drawable.karla ,"Karla",2));
-        mascotas.add(new Mascota(R.drawable.pako ,"Paquito",3));
-        mascotas.add(new Mascota(R.drawable.kusko ,"Kusko",3));
+        fragments.add(new RecyclerViewFragment());
+        fragments.add(new PerfilMascotaFragment());
+
+        return fragments;
     }
 
-    public MascotaAdaptador adaptador;
-    private void inicializarAdaptador(){
-        adaptador = new MascotaAdaptador(mascotas,this);
-        recyclerv_mascotas.setAdapter(adaptador);
+    private void setUpViewPager(){
+        viewPager.setAdapter(new PageAdaptador(getSupportFragmentManager(),agregarFragments()));
+        tabLayout.setupWithViewPager(viewPager);
+
+        // Asignaré los iconos a cada uno de los tab de acuerdo a su posición
+        // Pasos: Descargar la img de icon8, luego convertirla en Image Asset: drawable > new > Image Asset
+        tabLayout.getTabAt(0).setIcon(R.drawable.ic_home);
+        tabLayout.getTabAt(1).setIcon(R.drawable.ic_dog);
+    }
+
+
+    // Muestro el menú de opciones en el activity
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        getMenuInflater().inflate(R.menu.menu_opciones, menu);
+        return true;
+    }
+
+    // Controlar las opciones del menú de opciones
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item)
+    {
+        switch (item.getItemId())
+        {
+            case R.id.mnAcerca:
+                Intent intentAcerca = new Intent(MainActivity.this, Acerca.class);
+                startActivity(intentAcerca);
+                break;
+
+            case R.id.mnContacto:
+                Intent intentContacto = new Intent(MainActivity.this, FormularioContacto.class);
+                startActivity(intentContacto);
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

@@ -7,6 +7,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.KeyEvent;
@@ -36,12 +39,11 @@ public class MascotasFavoritas extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mascotas_favoritas);
 
-        // Habilito mi actionbar_favoritos personalizado
-        Toolbar miAcionBar_Favoritos = (Toolbar) findViewById(R.id.miActionBar_Favoritos);
-        setSupportActionBar(miAcionBar_Favoritos);
+        // Habilito mi actionbar_favoritos personalizado, Recuerda Adicionar la propiedad android:parentActivityName=".MainActivity" en el Manifest para que funcione
+        Toolbar miActionBar_Favoritos = (Toolbar) findViewById(R.id.miActionBar_Favoritos);
+        setSupportActionBar(miActionBar_Favoritos);
 
-        // Habilito la navegación hacia atrás
-        //getSupportActionBar().setHomeButtonEnabled(true);
+        // Habilito la navegación hacia atrás.
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
@@ -77,6 +79,7 @@ public class MascotasFavoritas extends AppCompatActivity {
         recyclerv_mascotasfavoritas.setAdapter(adaptador);
     }
 
+    // Programo el botón de Volver atrás del teléfono
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
 
@@ -106,6 +109,12 @@ public class MascotasFavoritas extends AppCompatActivity {
                 startActivity(intentAcerca);
                 break;
 
+            case R.id.mnContacto:
+                Intent intentContacto = new Intent(MascotasFavoritas.this, Configuraciones.class);
+                startActivity(intentContacto);
+                break;
+
+            /*
             case R.id.mnConfiguraciones:
                 Intent intentConfiguraciones = new Intent(MascotasFavoritas.this, Configuraciones.class);
                 startActivity(intentConfiguraciones);
@@ -113,6 +122,9 @@ public class MascotasFavoritas extends AppCompatActivity {
 
             case R.id.mnSalir:
                 break;
+
+                */
+
         }
 
         return super.onOptionsItemSelected(item);

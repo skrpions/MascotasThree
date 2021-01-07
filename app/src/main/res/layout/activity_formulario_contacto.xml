@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FormularioContacto">
+
+    <include android:id="@+id/miActionBar_Favoritos"
+        layout="@layout/actionbar_favoritos"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="58dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_margin="@dimen/margen_general">
+
+            <!-- =========== Start :: Avatar ============ -->
+            <ImageView
+                android:id="@+id/ivAvatar"
+                android:layout_width="@dimen/WidthEight_Foto"
+                android:layout_height="@dimen/WidthEight_Foto"
+                android:src="@drawable/logo"
+                android:layout_gravity="center"
+                android:layout_marginBottom="@dimen/marginTopButton_Foto"
+                />
+            <!-- =========== End :: Avatar ============ -->
+
+
+            <!-- =========== Start :: Nombre ============ -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:startIconDrawable="@drawable/ic_baseline_account_circle_24"
+                app:startIconTint="@color/marine_500"
+                app:endIconMode="custom"
+                app:endIconDrawable="@drawable/ic_baseline_check_circle_24" >
+
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etNombre"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/etNombre"
+                    android:layout_marginBottom="@dimen/marginBottom_Datos"
+                    app:hintAnimationEnabled="true"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+            <!-- =========== End :: Nombre ============ -->
+
+
+            <!-- =========== Start E-mail ============ -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:startIconDrawable="@drawable/ic_baseline_mail_24"
+                app:startIconTint="@color/marine_500"
+                app:endIconMode="custom"
+                app:endIconDrawable="@drawable/ic_baseline_check_circle_24">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress"
+                    android:hint="@string/etEmail"
+                    android:layout_marginBottom="@dimen/marginBottom_Datos"/>
+            </com.google.android.material.textfield.TextInputLayout>
+            <!-- =========== End E-mail ============ -->
+
+
+            <!-- =========== Start :: Mensaje ============ -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:startIconDrawable="@drawable/ic_baseline_message_24"
+                app:startIconTint="@color/marine_500"
+                app:startIconContentDescription="@string/etMensaje"
+                app:counterEnabled="true"
+                app:counterMaxLength="120"
+                app:errorEnabled="true"
+                app:endIconMode="custom"
+                app:endIconDrawable="@drawable/ic_baseline_check_circle_24">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etMensaje"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textCapWords"
+                    android:hint="@string/etMensaje"
+                    android:layout_marginBottom="@dimen/marginBottom_Datos"/>
+            </com.google.android.material.textfield.TextInputLayout>
+            <!-- =========== End :: Mensaje ============ -->
+
+
+            <!-- =========== Start :: Botón Enviar ============ -->
+            <Button
+                android:id="@+id/btnEnviar"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/height_ButtonSiguiente"
+                app:icon="@drawable/ic_baseline_send_24"
+                app:iconGravity="textEnd"
+                android:text="@string/btnEnviar" />
+            <!-- =========== End :: Botón Enviar ============ -->
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

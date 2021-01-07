@@ -22,23 +22,22 @@ import java.util.ArrayList;
 
 public class MascotaAdaptador extends RecyclerView.Adapter<MascotaAdaptador.MascotaViewHolder> {
 
-    // Construyo la lista de contactos
+    // Construyo la lista de mascotas
     public MascotaAdaptador(ArrayList<Mascota> mascotas, Activity activity)
     {
         this.mascotas = mascotas;
-        this.activity =  activity;
+        this.activity = activity;
     }
 
     ArrayList<Mascota> mascotas;
     Activity activity;
-
 
     // Infla el layout y lo pasará al viewHolder para que el obtenga los views
     @NonNull
     @Override
     public MascotaViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        // Le estoy dando vida al cardview_contacto
+        // Le estoy dando vida al cardview_mascota
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview_mascota, parent, false);
         return new MascotaViewHolder(v);
     }
@@ -60,7 +59,6 @@ public class MascotaAdaptador extends RecyclerView.Adapter<MascotaAdaptador.Masc
 
                 raitearMascota();
             }
-
 
             private void raitearMascota() {
                 // Convierto a entero en numero del contador y lo asigno a la variable numero
@@ -97,8 +95,6 @@ public class MascotaAdaptador extends RecyclerView.Adapter<MascotaAdaptador.Masc
             tvNombreCv    = (TextView) itemView.findViewById(R.id.tvNombreCv);
             tvContadorCv  = (TextView) itemView.findViewById(R.id.tvContadorCv);
             btnHuesoWhite = (ImageButton) itemView.findViewById(R.id.btnHuesoWhite);
-
-
         }
     }
 }

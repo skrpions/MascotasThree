@@ -32,5 +32,18 @@
     <dimen name="margin_right_star">10dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
 
+    <!-- Dp activity_formulario_contacto.xml -->
+    <dimen name="margen_general">16dp</dimen>
+    <!-- Dp MainActivity -->
+    <dimen name="marginBottom_Datos">10dp</dimen>
+    <dimen name="height_ButtonSiguiente">70dp</dimen>
+
+    <!-- Dp cardview_perfil_mascota.xml -->
+    <dimen name="ancho_huesoyellow">38dp</dimen>
+    <dimen name="alto_huesoyellow">48dp</dimen>
+    <dimen name="margin_right">10dp</dimen>
+    <dimen name="marginbutton_floating">90dp</dimen>
+
+
 
 </resources>
