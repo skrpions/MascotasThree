@@ -15,6 +15,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.atlanticssoft.mascotasthree.Bd.ConstructorMascotas;
 import com.atlanticssoft.mascotasthree.Models.Mascota;
 import com.atlanticssoft.mascotasthree.R;
 
@@ -51,16 +52,32 @@ public class MascotaAdaptador extends RecyclerView.Adapter<MascotaAdaptador.Masc
         holder.tvNombreCv.setText(mascota.getNombre());
 
         // Debo colocar comillas dobles después de setText cuando se trabaja con números para Convertir de texto a enteros, es decir, setText(""+mascota.getContador());
-        holder.tvContadorCv.setText(""+mascota.getContador());
+        // Otra opción valida seria asi:  holder.tvContadorCv.setText(String.valueOf(mascota.getContador()) + " Raits");
+        holder.tvContadorCv.setText(""+mascota.getContador()+ " Raits");
+        //holder.tvContadorCv.setText(String.valueOf(mascota.getContador()) + " Raits");
+
 
         holder.btnHuesoWhite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+                Toast.makeText(activity, " Raiteaste a "+ mascota.getNombre(), Toast.LENGTH_SHORT).show();
+
                 raitearMascota();
             }
 
+
             private void raitearMascota() {
+
+                // Instancio el Constructor de Mascotas
+                ConstructorMascotas constructorMascotas = new ConstructorMascotas(activity);
+                constructorMascotas.darRaitMascota(mascota);
+
+                // Coloco el nuevo valor númerico en el hueso amarillo
+                holder.tvContadorCv.setText(String.valueOf(constructorMascotas.obtenerRaitsMascota(mascota)));
+
+                /*
+
                 // Convierto a entero en numero del contador y lo asigno a la variable numero
                 int numero = Integer.parseInt(holder.tvContadorCv.getText().toString());
 
@@ -69,6 +86,10 @@ public class MascotaAdaptador extends RecyclerView.Adapter<MascotaAdaptador.Masc
 
                 // Coloco el nuevo valor númerico en el hueso amarillo
                 holder.tvContadorCv.setText(String.valueOf(numero));
+
+                 */
+
+
             }
         });
     }

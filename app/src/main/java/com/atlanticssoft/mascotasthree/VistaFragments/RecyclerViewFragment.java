@@ -1,5 +1,6 @@
-package com.atlanticssoft.mascotasthree.Fragments;
+package com.atlanticssoft.mascotasthree.VistaFragments;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,15 +15,19 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.atlanticssoft.mascotasthree.Adapters.MascotaAdaptador;
 import com.atlanticssoft.mascotasthree.Models.Mascota;
+import com.atlanticssoft.mascotasthree.Permisos.BluetoothActivity;
+import com.atlanticssoft.mascotasthree.Presentador.IRecyclerViewFragmentPresenter;
+import com.atlanticssoft.mascotasthree.Presentador.RecyclerViewFragmentPresenter;
 import com.atlanticssoft.mascotasthree.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
-public class RecyclerViewFragment extends Fragment {
+public class RecyclerViewFragment extends Fragment implements IRecyclerViewFragmentView {
 
-    RecyclerView recyclerv_mascotas;
-    ArrayList<Mascota> mascotas;
+    private RecyclerView recyclerv_mascotas;
+    private ArrayList<Mascota> mascotas;
+    private IRecyclerViewFragmentPresenter presenter;
 
     @Nullable
     @Override
@@ -33,39 +38,45 @@ public class RecyclerViewFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_recyclerview,container,false);
 
         FloatingActionButton myfab = v.findViewById(R.id.fab);
+        myfab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), BluetoothActivity.class);
+                startActivity(intent);
+            }
+        });
+
         myfab.setColorFilter(Color.WHITE);
 
 
         // Enlazo el recyclerview grafico con la lógica
         recyclerv_mascotas = (RecyclerView) v.findViewById(R.id.recyclerv_mascotas);
 
-        // Ahora el codigo será en terminos de recycler view
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity()); // Organizo todas las tarjetas una seguida de otra
-        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL); // Orientación en la que mostraré mi lista
-
-        recyclerv_mascotas.setLayoutManager(linearLayoutManager);
-        inicializarListaMascotas();
-        inicializarAdaptador();
+        // Enlazo el Presentador
+        presenter = new RecyclerViewFragmentPresenter(this, getContext());
 
         return v;
     }
 
-    public void inicializarListaMascotas(){
-        mascotas = new ArrayList<Mascota>();
 
-        mascotas.add(new Mascota(R.drawable.icons8_cat_96 ,"Catty",5));
-        mascotas.add(new Mascota(R.drawable.icons8_dog_96, "Ronny",4));
-        mascotas.add(new Mascota(R.drawable.misifu ,"Misifú",3));
-        mascotas.add(new Mascota(R.drawable.bruno ,"Bruno Morrongueras",2));
-        mascotas.add(new Mascota(R.drawable.gallina ,"Gallinila Kirika",2));
-        mascotas.add(new Mascota(R.drawable.karla ,"Karla",2));
-        mascotas.add(new Mascota(R.drawable.pako ,"Paquito",3));
-        mascotas.add(new Mascota(R.drawable.kusko ,"Kusko",3));
+    @Override
+    public void generarLinearLayoutVertical()
+    {
+        // Ahora el codigo será en terminos de recycler view
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity()); // Organizo todas las tarjetas una seguida de otra
+        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL); // Orientación en la que mostraré mi lista
+        recyclerv_mascotas.setLayoutManager(linearLayoutManager);
     }
 
-    public MascotaAdaptador adaptador;
-    private void inicializarAdaptador(){
-        adaptador = new MascotaAdaptador(mascotas,getActivity());
+    @Override
+    public MascotaAdaptador crearAdaptador(ArrayList<Mascota> mascotas) {
+        MascotaAdaptador adaptador = new MascotaAdaptador(mascotas,getActivity());
+        return adaptador;
+    }
+
+    @Override
+    public void inicializarAdaptadorRV(MascotaAdaptador adaptador)
+    {
         recyclerv_mascotas.setAdapter(adaptador);
     }
 }

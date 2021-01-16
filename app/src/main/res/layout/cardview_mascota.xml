@@ -14,7 +14,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:background="@color/purple_500">
+            android:background="@color/crema_green">
 
             <!-- =========== Start :: Foto ============ -->
             <ImageView
@@ -41,11 +41,12 @@
                     <!-- =========== Start :: Hueso White ============ -->
                     <ImageButton
                         android:id="@+id/btnHuesoWhite"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
                         android:src="@drawable/hueso_white_48"
                         android:layout_marginLeft="10dp"
-                        android:layout_alignParentLeft="true"/>
+                        android:layout_alignParentLeft="true"
+                        android:background="@color/white"/>
                     <!-- =========== End :: Hueso White ============ -->
 
 
@@ -81,7 +82,8 @@
                         android:layout_height="48dp"
                         android:src="@drawable/hueso_yellow_48"
                         android:layout_marginRight="10dp"
-                        android:layout_alignParentRight="true"/>
+                        android:layout_alignParentRight="true"
+                        android:background="@color/white"/>
                     <!-- =========== Start :: Hueso Yellow ============ -->
 
                 </RelativeLayout>

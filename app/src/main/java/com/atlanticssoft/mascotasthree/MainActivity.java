@@ -14,8 +14,9 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.atlanticssoft.mascotasthree.Adapters.PageAdaptador;
-import com.atlanticssoft.mascotasthree.Fragments.PerfilMascotaFragment;
-import com.atlanticssoft.mascotasthree.Fragments.RecyclerViewFragment;
+import com.atlanticssoft.mascotasthree.VistaFragments.PerfilMascotaFragment;
+import com.atlanticssoft.mascotasthree.VistaFragments.RecyclerViewFragment;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
@@ -24,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     ImageView ivStar_favoritos;
+    FloatingActionButton actionButton;
 
     // View's necesarios para usar Fragments
     Toolbar miActionBar;

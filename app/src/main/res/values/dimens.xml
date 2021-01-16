@@ -20,6 +20,7 @@
     <dimen name="marginTop_Datos">5dp</dimen>
     <dimen name="WidthEight_Foto">100dp</dimen>
     <dimen name="marginTopButton_Foto">10dp</dimen>
+    <dimen name="marginbutton_recycler">70dp</dimen>
 
     <!-- Sp cardview_mascota.xml -->
     <dimen name="size_tvNombre">18sp</dimen>

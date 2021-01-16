@@ -58,7 +58,8 @@
                     android:layout_height="@dimen/alto_huesoyellow"
                     android:src="@drawable/hueso_yellow_48"
                     android:layout_marginRight="@dimen/margin_right"
-                    android:layout_alignParentRight="true"/>
+                    android:layout_alignParentRight="true"
+                    android:background="@color/white"/>
                 <!-- =========== Start :: Hueso Yellow ============ -->
 
             </RelativeLayout>
