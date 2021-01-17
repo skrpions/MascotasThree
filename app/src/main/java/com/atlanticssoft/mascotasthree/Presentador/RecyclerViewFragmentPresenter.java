@@ -2,21 +2,20 @@ package com.atlanticssoft.mascotasthree.Presentador;
 
 import android.content.Context;
 
-import com.atlanticssoft.mascotasthree.Adapters.MascotaAdaptador;
 import com.atlanticssoft.mascotasthree.Bd.ConstructorMascotas;
 import com.atlanticssoft.mascotasthree.Models.Mascota;
-import com.atlanticssoft.mascotasthree.VistaFragments.IRecyclerViewFragmentView;
+import com.atlanticssoft.mascotasthree.VistaFragments.IRecyclerViewFragment;
 
 import java.util.ArrayList;
 
 public class RecyclerViewFragmentPresenter implements IRecyclerViewFragmentPresenter {
 
-    private IRecyclerViewFragmentView iRecyclerViewFragmentView;
+    private IRecyclerViewFragment iRecyclerViewFragmentView;
     private Context context;
     private ConstructorMascotas constructorMascotas;
     private ArrayList<Mascota> mascotas;
 
-    public RecyclerViewFragmentPresenter(IRecyclerViewFragmentView iRecyclerViewFragmentView, Context context)
+    public RecyclerViewFragmentPresenter(IRecyclerViewFragment iRecyclerViewFragmentView, Context context)
     {
         this.iRecyclerViewFragmentView = iRecyclerViewFragmentView;
         this.context = context;

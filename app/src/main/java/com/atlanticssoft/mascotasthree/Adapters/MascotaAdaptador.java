@@ -86,10 +86,7 @@ public class MascotaAdaptador extends RecyclerView.Adapter<MascotaAdaptador.Masc
 
                 // Coloco el nuevo valor númerico en el hueso amarillo
                 holder.tvContadorCv.setText(String.valueOf(numero));
-
                  */
-
-
             }
         });
     }

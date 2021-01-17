@@ -5,7 +5,7 @@ import com.atlanticssoft.mascotasthree.Models.Mascota;
 
 import java.util.ArrayList;
 
-public interface IRecyclerViewFragmentView
+public interface IRecyclerViewFragment
 {
     // En esta Interfaz irán todos los métodos del RecyclerViewFragment que no interactuán directamente con la interfaz de usuario,
     // es decir, aquellos métodos que son independientes del fragment_recyclerview.xml.

@@ -12,12 +12,13 @@ public class Mascota {
 
     }
 
-    // No se coloca el idmascota en el contructor ya que se generará automáticamente
+    // No es necesario colocar el idmascota en el contructor ya que se generará automáticamente, sin embargo lo colocaré
     // Contructor: Se utiliza para crear tablas de clases virtuales y poder así
     // desarrollar el polimorfismo, una de las herramientas de la programación orientada a objetos. ...
-    public Mascota(int foto, String nombre, int contador) {
-        this.foto = foto;
+    public Mascota(int idmascota, int foto, String nombre, int contador) {
+        this.idmascota = idmascota;
         this.nombre = nombre;
+        this.foto = foto;
         this.contador = contador;
     }
 

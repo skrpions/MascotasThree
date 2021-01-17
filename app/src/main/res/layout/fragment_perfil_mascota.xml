@@ -5,7 +5,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
 android:layout_width="match_parent"
 android:layout_height="match_parent">
 
-    <!-- =========== Start :: Avaar Mascota ============ -->
+    <!-- =========== Start :: Avatar Mascota ============ -->
     <com.mikhaellopez.circularimageview.CircularImageView
         android:id="@+id/avatarRonny"
         android:layout_width="150dp"
@@ -17,7 +17,7 @@ android:layout_height="match_parent">
         app:civ_shadow_radius="10dp"
         app:civ_shadow_color="#013f4f"
         android:layout_centerHorizontal="true"/>
-    <!-- =========== End :: Avaar Mascota ============ -->
+    <!-- =========== End :: Avatar Mascota ============ -->
 
 
     <!-- =========== Start :: Nombre ============ -->

@@ -14,28 +14,31 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.atlanticssoft.mascotasthree.Adapters.MascotaAdaptador;
+import com.atlanticssoft.mascotasthree.Adapters.MascotasFavoritasAdaptador;
 import com.atlanticssoft.mascotasthree.Models.Mascota;
 import com.atlanticssoft.mascotasthree.Permisos.BluetoothActivity;
+import com.atlanticssoft.mascotasthree.Presentador.IMascotasFavoritasPresenter;
 import com.atlanticssoft.mascotasthree.Presentador.IRecyclerViewFragmentPresenter;
+import com.atlanticssoft.mascotasthree.Presentador.MascotasFavoritasPresenter;
 import com.atlanticssoft.mascotasthree.Presentador.RecyclerViewFragmentPresenter;
 import com.atlanticssoft.mascotasthree.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
-public class RecyclerViewFragment extends Fragment implements IRecyclerViewFragment {
+public class MascotasFavoritasFragment extends Fragment implements IMascotasFavoritasFragment {
 
-    private RecyclerView recyclerv_mascotas;
-    private ArrayList<Mascota> mascotas;
-    private IRecyclerViewFragmentPresenter presenter;
+    private RecyclerView recyclerv_mascotasfavoritas;
+    private MascotasFavoritasPresenter presenter;
+
+    public MascotasFavoritasFragment(){}
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        //return super.onCreateView(inflater, container, savedInstanceState);
 
         // Asociamos la clase Fragment java con el respectivo layout xml
-        View v = inflater.inflate(R.layout.fragment_recyclerview,container,false);
+        View v = inflater.inflate(R.layout.fragment_mascotas_favoritas,container,false);
 
         FloatingActionButton myfab = v.findViewById(R.id.fab);
         myfab.setOnClickListener(new View.OnClickListener() {
@@ -48,12 +51,11 @@ public class RecyclerViewFragment extends Fragment implements IRecyclerViewFragm
 
         myfab.setColorFilter(Color.WHITE);
 
-
         // Enlazo el recyclerview grafico con la lógica
-        recyclerv_mascotas = (RecyclerView) v.findViewById(R.id.recyclerv_mascotas);
+        recyclerv_mascotasfavoritas = (RecyclerView) v.findViewById(R.id.recyclerv_mascotasfavoritas);
 
         // Enlazo el Presentador
-        presenter = new RecyclerViewFragmentPresenter(this, getContext());
+        presenter = new MascotasFavoritasPresenter (this, getContext());
 
         return v;
     }
@@ -65,18 +67,18 @@ public class RecyclerViewFragment extends Fragment implements IRecyclerViewFragm
         // Ahora el codigo será en terminos de recycler view
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity()); // Organizo todas las tarjetas una seguida de otra
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL); // Orientación en la que mostraré mi lista
-        recyclerv_mascotas.setLayoutManager(linearLayoutManager);
+        recyclerv_mascotasfavoritas.setLayoutManager(linearLayoutManager);
     }
 
     @Override
-    public MascotaAdaptador crearAdaptador(ArrayList<Mascota> mascotas) {
-        MascotaAdaptador adaptador = new MascotaAdaptador(mascotas,getActivity());
+    public MascotasFavoritasAdaptador crearAdaptador(ArrayList<Mascota> listaMascotasFavoritas) {
+        MascotasFavoritasAdaptador adaptador = new MascotasFavoritasAdaptador(listaMascotasFavoritas,getActivity());
         return adaptador;
     }
 
     @Override
-    public void inicializarAdaptadorRV(MascotaAdaptador adaptador)
+    public void inicializarAdaptadorRV(MascotasFavoritasAdaptador adaptador)
     {
-        recyclerv_mascotas.setAdapter(adaptador);
+        recyclerv_mascotasfavoritas.setAdapter(adaptador);
     }
 }

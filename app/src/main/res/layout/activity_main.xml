@@ -7,8 +7,9 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <include android:id="@+id/miActionBar"
-        layout="@layout/actionbar"/>
+    <include
+        android:id="@+id/miActionBar"
+        layout="@layout/actionbar" />
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar"

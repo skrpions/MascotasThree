@@ -3,8 +3,10 @@ package com.atlanticssoft.mascotasthree;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -22,7 +24,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.atlanticssoft.mascotasthree.Adapters.MascotaAdaptador;
+import com.atlanticssoft.mascotasthree.Adapters.PageAdaptador;
 import com.atlanticssoft.mascotasthree.Models.Mascota;
+import com.atlanticssoft.mascotasthree.VistaFragments.MascotasFavoritasFragment;
 
 import java.util.ArrayList;
 
@@ -30,6 +34,8 @@ public class MascotasFavoritas extends AppCompatActivity {
 
     RecyclerView recyclerv_mascotasfavoritas;
     ArrayList<Mascota> mascotas;
+    MascotaAdaptador adaptador;
+    ViewPager viewPager;
 
     ImageView ivStar_favoritos;
     TextView tvPresioname;
@@ -46,10 +52,14 @@ public class MascotasFavoritas extends AppCompatActivity {
         // Habilito la navegación hacia atrás.
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        // Habilito el viewPagerFavoritos
+        viewPager = (ViewPager) findViewById(R.id.viewPagerFavoritas);
+        setUpViewPager();
 
+        /*
         // Activo el menu de contexto
-        tvPresioname = (TextView) findViewById(R.id.tvPresioname);
-        registerForContextMenu(tvPresioname);
+        //tvPresioname = (TextView) findViewById(R.id.tvPresioname);
+        //registerForContextMenu(tvPresioname);
 
         // Enlazo el recyclerview grafico con la lógica
         recyclerv_mascotasfavoritas = (RecyclerView) findViewById(R.id.recyclerv_mascotasfavoritas);
@@ -61,17 +71,32 @@ public class MascotasFavoritas extends AppCompatActivity {
         recyclerv_mascotasfavoritas.setLayoutManager(linearLayoutManager);
         inicializarListaMascotas();
         inicializarAdaptador();
+        */
     }
 
+    private void setUpViewPager() {
+        viewPager.setAdapter(new PageAdaptador(getSupportFragmentManager(), agregarFragments()));
+    }
+
+    private ArrayList<Fragment> agregarFragments() {
+        ArrayList<Fragment> fragments = new ArrayList<>();
+
+        fragments.add(new MascotasFavoritasFragment());
+
+        return fragments;
+    }
+
+    /*
     public void inicializarListaMascotas(){
         mascotas = new ArrayList<Mascota>();
 
-        mascotas.add(new Mascota(R.drawable.bruno ,"Bruno Morrongueras",2));
-        mascotas.add(new Mascota(R.drawable.gallina ,"Gallinila Kirika",2));
+        mascotas.add(new Mascota(R.drawable.bruno ,"Bruno",2));
+        mascotas.add(new Mascota(R.drawable.gallina ,"Kirika",2));
         mascotas.add(new Mascota(R.drawable.karla ,"Karla",2));
         mascotas.add(new Mascota(R.drawable.pako ,"Paquito",3));
         mascotas.add(new Mascota(R.drawable.kusko ,"Kusko",3));
     }
+
 
     public MascotaAdaptador adaptador;
     private void inicializarAdaptador(){
@@ -79,7 +104,9 @@ public class MascotasFavoritas extends AppCompatActivity {
         recyclerv_mascotasfavoritas.setAdapter(adaptador);
     }
 
-    // Programo el botón de Volver atrás del teléfono
+     */
+
+    /* Programo el botón de Volver atrás del teléfono
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
 
@@ -89,7 +116,7 @@ public class MascotasFavoritas extends AppCompatActivity {
             startActivity(intent);
         }
         return super.onKeyDown(keyCode, event);
-    }
+    } */
 
     // Muestro el menú de opciones en el activity
     @Override
@@ -157,7 +184,7 @@ public class MascotasFavoritas extends AppCompatActivity {
         return super.onContextItemSelected(item);
     }
 
-    // Codigo para mostrar el menu de un Popup
+    /* Codigo para mostrar el menu de un Popup
     public void levantarMenuPopup(View v){
         ImageView imageView = (ImageView) findViewById(R.id.btnClickeame);
         PopupMenu popupMenu = new PopupMenu(this, imageView);
@@ -188,5 +215,5 @@ public class MascotasFavoritas extends AppCompatActivity {
         });
 
         popupMenu.show();
-    }
+    }  */
 }

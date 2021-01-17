@@ -62,14 +62,16 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
     }
 
     // Agrego los fragments a la lista
     private ArrayList<Fragment> agregarFragments(){
         ArrayList<Fragment> fragments = new ArrayList<>();
 
+        // Fragment que irá en el primer tab
         fragments.add(new RecyclerViewFragment());
+
+        // Fragment que irá en el segundo tab
         fragments.add(new PerfilMascotaFragment());
 
         return fragments;
@@ -84,7 +86,6 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.getTabAt(0).setIcon(R.drawable.ic_home);
         tabLayout.getTabAt(1).setIcon(R.drawable.ic_dog);
     }
-
 
     // Muestro el menú de opciones en el activity
     @Override

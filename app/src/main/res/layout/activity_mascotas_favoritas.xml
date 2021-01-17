@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,29 +10,13 @@
     <include android:id="@+id/miActionBar_Favoritos"
         layout="@layout/actionbar_favoritos"/>
 
-    <TextView
-        android:id="@+id/tvPresioname"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Presioname:"
-        android:textSize="@dimen/size_tvNombre"
-        android:gravity="center"
-        android:layout_marginTop="@dimen/margin"
-        android:layout_below="@id/miActionBar_Favoritos"/>
-
-    <ImageView
-        android:id="@+id/btnClickeame"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:src="@drawable/click"
-        android:layout_below="@id/tvPresioname"
-        android:onClick="levantarMenuPopup"/>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerv_mascotasfavoritas"
+    <!-- Viewpager es el contenedor donde viviran mis fragments -->
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewPagerFavoritas"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="@dimen/margin"
-        android:layout_below="@id/btnClickeame"/>
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-</RelativeLayout>
+    </androidx.viewpager.widget.ViewPager>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -34,8 +34,9 @@ public class BaseDatos extends SQLiteOpenHelper {
         // Tabla :: Mascota :: Ojo. Los espacios juegan un papel muy importante, si le coloco espacios de más no funcionara
         String queryCrearTablaMascota = "CREATE TABLE " + ConstantesBaseDatos.TABLE_MASCOTA + "("+
                 ConstantesBaseDatos.TABLE_MASCOTA_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                ConstantesBaseDatos.TABLE_MASCOTA_FOTO + " INTEGER, " +
-                ConstantesBaseDatos.TABLE_MASCOTA_NOMBRE + " TEXT" +
+                ConstantesBaseDatos.TABLE_MASCOTA_NOMBRE + " TEXT, " +
+                ConstantesBaseDatos.TABLE_MASCOTA_FOTO + " INTEGER " +
+
                 ")";
 
         // Tabla :: Raits
@@ -47,13 +48,11 @@ public class BaseDatos extends SQLiteOpenHelper {
 
                 // Declaro el campo que será foreign key
                 "FOREIGN KEY (" + ConstantesBaseDatos.TABLE_RAITS_MASCOTA_ID + ") " +
-                "REFERENCES " + ConstantesBaseDatos.TABLE_MASCOTA + "("+ ConstantesBaseDatos.TABLE_MASCOTA_ID +")"+
-                ")";
+                "REFERENCES " + ConstantesBaseDatos.TABLE_MASCOTA + "("+ ConstantesBaseDatos.TABLE_MASCOTA_ID +")"+ ")";
 
         // Ejecuto la creación de las tablas en Orden: Primero las tablas independientes y luego las dependientes
         db.execSQL(queryCrearTablaMascota);
         db.execSQL(queryCrearTablaRaits);
-
     }
 
     @Override
@@ -74,21 +73,8 @@ public class BaseDatos extends SQLiteOpenHelper {
 
         // Consulta para obtener las mascotas
         String query = "SELECT * FROM " + ConstantesBaseDatos.TABLE_MASCOTA;
-        /*
-        String query = "SELECT * FROM " + ConstantesBaseDatos.TABLE_MASCOTA +
-                " INNER JOIN " + ConstantesBaseDatos.TABLE_RAITS +
-                " ON " + ConstantesBaseDatos.TABLE_MASCOTA+"."+ConstantesBaseDatos.TABLE_MASCOTA_ID +
-                " = " + ConstantesBaseDatos.TABLE_RAITS+"."+ConstantesBaseDatos.TABLE_MASCOTA_ID +
-                " ORDER BY " + ConstantesBaseDatos.TABLE_RAITS+"."+ConstantesBaseDatos.TABLE_RAITS_CONTADOR + " DESC";
-
-        Log.i("TETTO", "Query "+query);
-
-         */
-
-
-
-
         SQLiteDatabase db = this.getWritableDatabase();
+
         Cursor registros =  db.rawQuery(query,null);
 
         while (registros.moveToNext())
@@ -96,8 +82,8 @@ public class BaseDatos extends SQLiteOpenHelper {
             // Empiezo a llenar el objeto Mascota
             Mascota mascotaActual = new Mascota();
             mascotaActual.setIdmascota(registros.getInt(0)); // 0 es la posición que ocupa el idmascota en la tabla mascota
-            mascotaActual.setFoto(registros.getInt(1)); // 1 es la posición que ocupa la foto en la tabla mascota
-            mascotaActual.setNombre(registros.getString(2)); // 1 es la posición que ocupa el nombre en la tabla mascota
+            mascotaActual.setNombre(registros.getString(1)); // 1 es la posición que ocupa el nombre en la tabla mascota
+            mascotaActual.setFoto(registros.getInt(2)); // 1 es la posición que ocupa la foto en la tabla mascota
 
             // Ejecuto un query que me recupere todos los raits de cada mascota
             String queryConsultarRaits = "SELECT COUNT("+ConstantesBaseDatos.TABLE_RAITS_CONTADOR+") as raits " +
@@ -106,6 +92,7 @@ public class BaseDatos extends SQLiteOpenHelper {
 
             // Recupero el query
             Cursor registrosRaits = db.rawQuery(queryConsultarRaits, null);
+
             if (registrosRaits.moveToNext())
             {
                 mascotaActual.setContador(registrosRaits.getInt(0));
@@ -113,7 +100,6 @@ public class BaseDatos extends SQLiteOpenHelper {
             else {
                 mascotaActual.setContador(0);
             }
-
             mascotas.add(mascotaActual);
         }
         //db.close();
@@ -124,11 +110,9 @@ public class BaseDatos extends SQLiteOpenHelper {
     // Método para agregar Mascotas
     public void insertarMascota(ContentValues contentValues)
     {
-
         SQLiteDatabase db = this.getWritableDatabase();
-        db.insert(ConstantesBaseDatos.TABLE_MASCOTA,null,contentValues);
+        db.insert(ConstantesBaseDatos.TABLE_MASCOTA,null, contentValues);
         //db.close();
-
     }
 
     // Método para agregar los raits en las tabla Raits
@@ -144,6 +128,7 @@ public class BaseDatos extends SQLiteOpenHelper {
     public int obtenerRaitsMascota(Mascota mascota)
     {
         int raits = 0;
+
         String queryConsultarRaits = "SELECT COUNT("+ConstantesBaseDatos.TABLE_RAITS_CONTADOR+")" +
             " FROM " + ConstantesBaseDatos.TABLE_RAITS +
             " WHERE " + ConstantesBaseDatos.TABLE_RAITS_MASCOTA_ID + "="+mascota.getIdmascota();
@@ -159,5 +144,52 @@ public class BaseDatos extends SQLiteOpenHelper {
         // db.close(); // Cierro la conexión
 
         return raits;
+    }
+
+    // Método para obtener las últimas 5 mascotas favoritas
+    public ArrayList<Mascota> obtenerUltimas() {
+        ArrayList<Mascota> listaMascotasF = new ArrayList<>();
+
+
+        String query = "SELECT DISTINCT mascota.idmascota, mascota.nombre, mascota.foto, raits.idmascota, raits.contador" +
+                " FROM " + ConstantesBaseDatos.TABLE_MASCOTA +
+                " INNER JOIN " + ConstantesBaseDatos.TABLE_RAITS +
+                " ON " + ConstantesBaseDatos.TABLE_MASCOTA+"."+ConstantesBaseDatos.TABLE_MASCOTA_ID +
+                " = " + ConstantesBaseDatos.TABLE_RAITS+"."+ConstantesBaseDatos.TABLE_MASCOTA_ID +
+                " ORDER BY " + ConstantesBaseDatos.TABLE_RAITS+"."+ConstantesBaseDatos.TABLE_RAITS_CONTADOR +
+                " DESC LIMIT 5";
+
+        Log.i("TETTO", "Query "+query);
+
+
+        SQLiteDatabase db= this.getReadableDatabase();
+        Cursor registros = db.rawQuery(query, null);
+
+
+
+        while (registros.moveToNext()){
+            Mascota mascotaActual = new Mascota();
+            mascotaActual.setIdmascota(registros.getInt(0));
+            mascotaActual.setNombre(registros.getString(1));
+            mascotaActual.setFoto(registros.getInt(2));
+
+
+            String queryLikes = "SELECT COUNT("+ ConstantesBaseDatos.TABLE_RAITS_CONTADOR+") as likes " +
+                    " FROM " + ConstantesBaseDatos.TABLE_RAITS +
+                    " WHERE " + ConstantesBaseDatos.TABLE_RAITS_MASCOTA_ID + "=" + mascotaActual.getIdmascota();
+
+            Cursor registrosLikes = db.rawQuery(queryLikes, null);
+            if (registrosLikes.moveToNext()){
+
+                mascotaActual.setContador(registrosLikes.getInt(0));
+            }else {
+                mascotaActual.setContador(0);
+            }
+            listaMascotasF.add(mascotaActual);
+        }
+
+        //db.close();
+
+        return listaMascotasF;
     }
 }
