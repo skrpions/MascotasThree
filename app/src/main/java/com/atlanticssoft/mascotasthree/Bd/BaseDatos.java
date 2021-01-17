@@ -1,11 +1,11 @@
 package com.atlanticssoft.mascotasthree.Bd;
 
-import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 
@@ -32,22 +32,22 @@ public class BaseDatos extends SQLiteOpenHelper {
         // Aquí se crea toda la estructura de la bd, es decir, se crean las Tablas
 
         // Tabla :: Mascota :: Ojo. Los espacios juegan un papel muy importante, si le coloco espacios de más no funcionara
-        String queryCrearTablaMascota = "CREATE TABLE " + ConstantesBaseDatos.TABLE_MASCOTAS + "("+
-                ConstantesBaseDatos.TABLE_MASCOTAS_ID     + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                ConstantesBaseDatos.TABLE_MASCOTAS_FOTO   + " INTEGER, " +
-                ConstantesBaseDatos.TABLE_MASCOTAS_NOMBRE + " TEXT" +
+        String queryCrearTablaMascota = "CREATE TABLE " + ConstantesBaseDatos.TABLE_MASCOTA + "("+
+                ConstantesBaseDatos.TABLE_MASCOTA_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                ConstantesBaseDatos.TABLE_MASCOTA_FOTO + " INTEGER, " +
+                ConstantesBaseDatos.TABLE_MASCOTA_NOMBRE + " TEXT" +
                 ")";
 
         // Tabla :: Raits
         String queryCrearTablaRaits = "CREATE TABLE " + ConstantesBaseDatos.TABLE_RAITS + "(" +
 
                 ConstantesBaseDatos.TABLE_RAITS_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                ConstantesBaseDatos.TABLE_RAITS_MASCOTAS_ID  + " INTEGER, " + // Llave foránea
+                ConstantesBaseDatos.TABLE_RAITS_MASCOTA_ID + " INTEGER, " + // Llave foránea
                 ConstantesBaseDatos.TABLE_RAITS_CONTADOR + " INTEGER, " +
 
                 // Declaro el campo que será foreign key
-                "FOREIGN KEY (" + ConstantesBaseDatos.TABLE_RAITS_MASCOTAS_ID + ") " +
-                "REFERENCES " + ConstantesBaseDatos.TABLE_MASCOTAS + "("+ ConstantesBaseDatos.TABLE_MASCOTAS_ID +")"+
+                "FOREIGN KEY (" + ConstantesBaseDatos.TABLE_RAITS_MASCOTA_ID + ") " +
+                "REFERENCES " + ConstantesBaseDatos.TABLE_MASCOTA + "("+ ConstantesBaseDatos.TABLE_MASCOTA_ID +")"+
                 ")";
 
         // Ejecuto la creación de las tablas en Orden: Primero las tablas independientes y luego las dependientes
@@ -60,7 +60,7 @@ public class BaseDatos extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
         // De esta manera afectaré la base de datos cuando desee hacer una reestructuración en la misma
-        db.execSQL("DROP TABLE IF EXISTS " + ConstantesBaseDatos.TABLE_MASCOTAS);
+        db.execSQL("DROP TABLE IF EXISTS " + ConstantesBaseDatos.TABLE_MASCOTA);
         db.execSQL("DROP TABLE IF EXISTS " + ConstantesBaseDatos.TABLE_RAITS);
 
         // Vuelvo a crear las tablas
@@ -73,7 +73,21 @@ public class BaseDatos extends SQLiteOpenHelper {
         ArrayList<Mascota> mascotas = new ArrayList<>();
 
         // Consulta para obtener las mascotas
-        String query = "SELECT * FROM " + ConstantesBaseDatos.TABLE_MASCOTAS;
+        String query = "SELECT * FROM " + ConstantesBaseDatos.TABLE_MASCOTA;
+        /*
+        String query = "SELECT * FROM " + ConstantesBaseDatos.TABLE_MASCOTA +
+                " INNER JOIN " + ConstantesBaseDatos.TABLE_RAITS +
+                " ON " + ConstantesBaseDatos.TABLE_MASCOTA+"."+ConstantesBaseDatos.TABLE_MASCOTA_ID +
+                " = " + ConstantesBaseDatos.TABLE_RAITS+"."+ConstantesBaseDatos.TABLE_MASCOTA_ID +
+                " ORDER BY " + ConstantesBaseDatos.TABLE_RAITS+"."+ConstantesBaseDatos.TABLE_RAITS_CONTADOR + " DESC";
+
+        Log.i("TETTO", "Query "+query);
+
+         */
+
+
+
+
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor registros =  db.rawQuery(query,null);
 
@@ -88,7 +102,7 @@ public class BaseDatos extends SQLiteOpenHelper {
             // Ejecuto un query que me recupere todos los raits de cada mascota
             String queryConsultarRaits = "SELECT COUNT("+ConstantesBaseDatos.TABLE_RAITS_CONTADOR+") as raits " +
                     " FROM " + ConstantesBaseDatos.TABLE_RAITS +
-                    " WHERE " + ConstantesBaseDatos.TABLE_RAITS_MASCOTAS_ID + "=" + mascotaActual.getIdmascota();
+                    " WHERE " + ConstantesBaseDatos.TABLE_RAITS_MASCOTA_ID + "=" + mascotaActual.getIdmascota();
 
             // Recupero el query
             Cursor registrosRaits = db.rawQuery(queryConsultarRaits, null);
@@ -102,19 +116,18 @@ public class BaseDatos extends SQLiteOpenHelper {
 
             mascotas.add(mascotaActual);
         }
-
-        db.close();
+        //db.close();
         return mascotas;
-
     }
+
 
     // Método para agregar Mascotas
     public void insertarMascota(ContentValues contentValues)
     {
 
         SQLiteDatabase db = this.getWritableDatabase();
-        db.insert(ConstantesBaseDatos.TABLE_MASCOTAS,null,contentValues);
-        db.close();
+        db.insert(ConstantesBaseDatos.TABLE_MASCOTA,null,contentValues);
+        //db.close();
 
     }
 
@@ -123,7 +136,8 @@ public class BaseDatos extends SQLiteOpenHelper {
     {
         SQLiteDatabase db = this.getWritableDatabase();
         db.insert(ConstantesBaseDatos.TABLE_RAITS,null,contentValues); // Inserto los datos en la tabla Raits
-        db.close();
+
+        // db.close();
     }
 
     // Método para obtener la cantidad de raits que se le ha dado a cada mascota
@@ -132,7 +146,7 @@ public class BaseDatos extends SQLiteOpenHelper {
         int raits = 0;
         String queryConsultarRaits = "SELECT COUNT("+ConstantesBaseDatos.TABLE_RAITS_CONTADOR+")" +
             " FROM " + ConstantesBaseDatos.TABLE_RAITS +
-            " WHERE " + ConstantesBaseDatos.TABLE_RAITS_MASCOTAS_ID + "="+mascota.getIdmascota();
+            " WHERE " + ConstantesBaseDatos.TABLE_RAITS_MASCOTA_ID + "="+mascota.getIdmascota();
 
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor registros = db.rawQuery(queryConsultarRaits, null);
@@ -142,7 +156,7 @@ public class BaseDatos extends SQLiteOpenHelper {
             raits = registros.getInt(0);
         }
 
-        db.close(); // Cierro la conexión
+        // db.close(); // Cierro la conexión
 
         return raits;
     }
