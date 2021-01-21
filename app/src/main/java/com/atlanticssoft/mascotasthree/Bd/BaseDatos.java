@@ -119,7 +119,7 @@ public class BaseDatos extends SQLiteOpenHelper {
     public void insertarRaitsMascota(ContentValues contentValues)
     {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.insert(ConstantesBaseDatos.TABLE_RAITS,null,contentValues); // Inserto los datos en la tabla Raits
+        db.insert(ConstantesBaseDatos.TABLE_RAITS,null, contentValues); // Inserto los datos en la tabla Raits
 
         // db.close();
     }
@@ -147,19 +147,21 @@ public class BaseDatos extends SQLiteOpenHelper {
     }
 
     // Método para obtener las últimas 5 mascotas favoritas
-    public ArrayList<Mascota> obtenerUltimas() {
+    public ArrayList<Mascota> obtenerTopCincoFavoritas() {
         ArrayList<Mascota> listaMascotasF = new ArrayList<>();
 
 
-        String query = "SELECT DISTINCT mascota.idmascota, mascota.nombre, mascota.foto, raits.idmascota, raits.contador" +
+        String query =
+                " SELECT mascota.idmascota, mascota.nombre, mascota.foto, raits.idmascota, raits.contador, SUM(raits.contador) AS TOTAL " +
                 " FROM " + ConstantesBaseDatos.TABLE_MASCOTA +
                 " INNER JOIN " + ConstantesBaseDatos.TABLE_RAITS +
                 " ON " + ConstantesBaseDatos.TABLE_MASCOTA+"."+ConstantesBaseDatos.TABLE_MASCOTA_ID +
                 " = " + ConstantesBaseDatos.TABLE_RAITS+"."+ConstantesBaseDatos.TABLE_MASCOTA_ID +
-                " ORDER BY " + ConstantesBaseDatos.TABLE_RAITS+"."+ConstantesBaseDatos.TABLE_RAITS_CONTADOR +
+                " GROUP BY " + ConstantesBaseDatos.TABLE_MASCOTA+"."+ConstantesBaseDatos.TABLE_MASCOTA_NOMBRE +
+                " ORDER BY TOTAL " +
                 " DESC LIMIT 5";
 
-        Log.i("TETTO", "Query "+query);
+        Log.i("TETTO MTZ", query);
 
 
         SQLiteDatabase db= this.getReadableDatabase();

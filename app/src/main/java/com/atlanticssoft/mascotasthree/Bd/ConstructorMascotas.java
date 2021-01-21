@@ -87,6 +87,8 @@ public class ConstructorMascotas
         BaseDatos db = new BaseDatos(context);
         ContentValues contentValues = new ContentValues();
 
+
+
         contentValues.put(ConstantesBaseDatos.TABLE_RAITS_MASCOTA_ID, mascota.getIdmascota()); // Inserto el Id de la mascota a la que quiero raitear
         contentValues.put(ConstantesBaseDatos.TABLE_RAITS_CONTADOR, RAIT); // Inserto el valor del rait, es decir, 1
         db.insertarRaitsMascota(contentValues); // Envio los datos al objeto db
@@ -101,6 +103,6 @@ public class ConstructorMascotas
     public ArrayList<Mascota> obtenerDatosMascotasFavoritas()
     {
         BaseDatos db = new BaseDatos(context);
-        return db.obtenerUltimas();
+        return db.obtenerTopCincoFavoritas();
     }
 }
